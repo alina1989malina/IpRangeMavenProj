@@ -9,18 +9,19 @@ import static pack.ip.utils.ErrorMessages.INCORRECT_START_IP;
 import static pack.ip.utils.ErrorMessages.NULL_IP_MSG;
 
 public class IpRange implements Iterable<IpAddress>{
-    private IpAddress startIp;
+    private IpAddress currentIp;
     private IpAddress lastIp;
 
-    public IpRange(IpAddress startIp, IpAddress lastIp){
-        if (startIp.compareTo(lastIp) >= 0)
+    public IpRange(IpAddress currentIp, IpAddress lastIp){
+        if (currentIp.compareTo(lastIp) >= 0)
             throw new IllegalArgumentException(INCORRECT_START_IP);
-        setStartIp(startIp);
+        setCurrentIp(currentIp);
         setLastIp(lastIp);
     }
 
-    public void setStartIp(IpAddress startIp) {
-        this.startIp = Optional.ofNullable(startIp).orElseThrow(() -> new IllegalArgumentException(NULL_IP_MSG));
+
+    public void setCurrentIp(IpAddress currentIp) {
+        this.currentIp = Optional.ofNullable(currentIp).orElseThrow(() -> new IllegalArgumentException(NULL_IP_MSG));
     }
 
     public void setLastIp(IpAddress lastIp) {
@@ -29,7 +30,7 @@ public class IpRange implements Iterable<IpAddress>{
 
     @Override
     public Iterator<IpAddress> iterator() {
-        return new IpIterator(startIp, lastIp);
+        return new IpIterator(currentIp, lastIp);
     }
 
     private class IpIterator implements Iterator<IpAddress> {
@@ -43,7 +44,7 @@ public class IpRange implements Iterable<IpAddress>{
 
         @Override
         public boolean hasNext() {
-            return current.compareTo(last) < 0;
+            return current.getValue() + 1 < last.getValue();
         }
 
         @Override

@@ -5,8 +5,7 @@ import pack.ip.rangeStuff.IpRange;
 
 import java.util.Scanner;
 
-public class IpRangeApp
-{
+public class IpRangeApp {
     public static void main( String[] args ) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Input start IPv4 address:");
@@ -17,7 +16,7 @@ public class IpRangeApp
         try {
             //IpRange ipRange = new IpRange("192.168.0.1", "192.168.0.5");
             System.out.println("Exclusive range of inbetween IP addresses:");
-            IpRange ipRange = new IpRange(new Ipv4Address("0.0.0.1"), new Ipv4Address("0.0.0.4"));
+            IpRange ipRange = new IpRange(new Ipv4Address(ip1), new Ipv4Address(ip2));
             ipRange.forEach(System.out::println);
         }
         catch (IllegalArgumentException e){
