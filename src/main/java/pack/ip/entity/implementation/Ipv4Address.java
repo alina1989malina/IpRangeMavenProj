@@ -7,7 +7,7 @@ import static pack.ip.utils.ErrorMessages.NULL_IP_MSG;
 
 public class Ipv4Address extends IpAddress {
     public static final Ipv4Address MAX_IP_VAL = new Ipv4Address("255.255.255.255");
-    public static final Ipv4Address MIN_IP_LONG_VAL = new Ipv4Address("0.0.0.0");
+    public static final Ipv4Address MIN_IP_VAL = new Ipv4Address("0.0.0.0");
 
     public  static final int IPV4_ARRAY_SIZE = 4;
 
@@ -21,7 +21,7 @@ public class Ipv4Address extends IpAddress {
 
     @Override
     protected boolean verifyIpLongValue(long ip){
-        return ip < MIN_IP_LONG_VAL.getValue() || ip > MAX_IP_VAL.getValue();
+        return ip < MIN_IP_VAL.getValue() || ip > MAX_IP_VAL.getValue();
     }
 
     @Override
